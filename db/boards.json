@@ -1,0 +1,22 @@
+{
+	"board1": {
+		"name": "Cooking",
+		"description": "Recipes for vegans",
+		"uid": "yYQL84fPPOchFT5q6nWaNeLVTsn2"
+	},
+	"board2": {
+		"name": "Running Tips",
+		"description": "How to improve your running",
+		"uid": "yYQL84fPPOchFT5q6nWaNeLVTsn2"
+	},
+	"board3": {
+		"name": "Poems",
+		"description": "Inspiration for when you need it",
+		"uid": "yYQL84fPPOchFT5q6nWaNeLVTsn2"
+	},
+	"board4": {
+		"name": "Workout",
+		"description": "Activities to stay in shape",
+		"uid": "1234"
+	}
+}
