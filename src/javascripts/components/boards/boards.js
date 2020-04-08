@@ -6,7 +6,6 @@ import boardComponent from '../boardBuilder/boardBuilder';
 import singleBoard from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 
-
 const buildBoards = () => {
   const firebaseUser = firebase.auth().currentUser;
   const myFirebaseUid = firebaseUser.uid;

@@ -14,7 +14,6 @@ const init = () => {
   myNavbar.logoutEvent();
   $('body').on('mouseenter', '.user-card', (e) => e.target.closest('.card').classList.add('bg-success'));
   $('body').on('mouseleave', '.user-card', (e) => e.target.closest('.card').classList.remove('bg-success'));
-  
 };
 
 init();

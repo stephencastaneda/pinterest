@@ -5,6 +5,7 @@ const boardComponent = (board) => {
   domString += `<div class="card-header">${board.name}</div>`;
   domString += '<div class="card-body">';
   domString += `<p class="card-text">Description: ${board.description}</p>`;
+  domString += '<button class="btn btn-danger"><i class="fas fa-trash"></i></button>';
   domString += '</div>';
   domString += '</div>';
   domString += '</div>';

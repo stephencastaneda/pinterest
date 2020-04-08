@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import boards from '../../components/boards/boards';
+// eslint-disable-next-line import/no-cycle
+import singleBoard from '../../components/boards/boards';
 
 const authDiv = $('#auth');
 const boardDiv = $('#board');
@@ -17,7 +18,7 @@ const checkLoginStatus = () => {
       authDiv.addClass('hide');
       boardDiv.removeClass('hide');
       logoutButton.removeClass('hide');
-      boards.buildBoards();
+      singleBoard.buildBoards();
       userBoards.removeClass('hide');
       singleBoardDiv.removeClass('hide');
     } else {
