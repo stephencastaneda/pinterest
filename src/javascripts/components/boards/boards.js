@@ -6,6 +6,18 @@ import boardComponent from '../boardBuilder/boardBuilder';
 import singleBoard from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 
+const removeBoards = (e) => {
+  const selectedBoardId = e.target.closest('.delete-board').id;
+  console.error('selectedBoardId', selectedBoardId);
+  boardData.deleteBoard(selectedBoardId)
+    .then(() => {
+    //  eslint-disable-next-line no-use-before-define
+      buildBoards();
+    // utils.printToDom('single-board', buildBoards());
+    })
+    .catch((err) => console.error('cant delete', err));
+};
+
 const buildBoards = () => {
   const firebaseUser = firebase.auth().currentUser;
   const myFirebaseUid = firebaseUser.uid;
@@ -20,7 +32,8 @@ const buildBoards = () => {
       });
       domString += '</div>';
       utils.printToDom('userBoards', domString);
-      $('body').on('click', '.user-card', singleBoard.buildBoards);
+      $('body').on('click', '.open-pin', singleBoard.buildBoards);
+      $('body').on('click', '.delete-board', removeBoards);
     })
     .catch((err) => console.error('problem with getBoardsByUid', err));
 };
