@@ -1,7 +1,7 @@
 const boardComponent = (board) => {
   let domString = '';
-  domString += '<div class="col-3">';
-  domString += '<div class="card user-card">';
+  domString += '<div class="col-3 mb-5 mt-3">';
+  domString += `<div class="card user-card" id=${board.id}>`;
   domString += `<div class="card-header">${board.name}</div>`;
   domString += '<div class="card-body">';
   domString += `<p class="card-text">Description: ${board.description}</p>`;
