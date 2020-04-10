@@ -5,6 +5,13 @@ import boardData from '../../helpers/data/boardData';
 import boardComponent from '../boardBuilder/boardBuilder';
 import singleBoard from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
+import newBoardComponent from '../newBoard/newBoard';
+
+
+const openSingleBoard = (e) => {
+  const boardId = e.target.closest('.card').id;
+  singleBoard.buildPins(boardId);
+};
 
 const removeBoards = (e) => {
   const selectedBoardId = e.target.closest('.delete-board').id;
@@ -26,14 +33,16 @@ const buildBoards = () => {
       console.error(boards);
       let domString = '';
       domString += '<h2 class="text-center">Boards</h2>';
+      domString += '<button class="btn btn-success" id="show-add-board-form"><i class="fas fa-plus"></i></button>';
       domString += '<div class="d-flex flex-wrap">';
       boards.forEach((board) => {
         domString += boardComponent.boardComponent(board);
       });
       domString += '</div>';
       utils.printToDom('userBoards', domString);
-      $('body').on('click', '.open-pin', singleBoard.buildBoards);
+      $('body').on('click', '.open-pin', openSingleBoard);
       $('body').on('click', '.delete-board', removeBoards);
+      $('#show-add-board-form').click(newBoardComponent.showForm);
     })
     .catch((err) => console.error('problem with getBoardsByUid', err));
 };
