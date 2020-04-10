@@ -7,6 +7,24 @@ import singleBoard from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 import newBoardComponent from '../newBoard/newBoard';
 
+const makeABoard = (e) => {
+  e.preventDefault();
+  // make a new cow object
+  const newBoard = {
+    name: $('#board-name').val(),
+    description: $('#board-description').val(),
+    uid: firebase.auth().currentUser.uid,
+  };
+  // save to firebase
+  boardData.addBoard(newBoard)
+    .then(() => {
+      // reprint cows
+      // eslint-disable-next-line no-use-before-define
+      buildBoards();
+      utils.printToDom('new-board', '');
+    })
+    .catch((err) => console.error('could not add board', err));
+};
 
 const openSingleBoard = (e) => {
   const boardId = e.target.closest('.card').id;
@@ -42,6 +60,7 @@ const buildBoards = () => {
       utils.printToDom('userBoards', domString);
       $('body').on('click', '.open-pin', openSingleBoard);
       $('body').on('click', '.delete-board', removeBoards);
+      $('body').on('click', '#board-creator', makeABoard);
       $('#show-add-board-form').click(newBoardComponent.showForm);
     })
     .catch((err) => console.error('problem with getBoardsByUid', err));
