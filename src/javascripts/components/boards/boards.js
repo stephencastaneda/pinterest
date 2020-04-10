@@ -3,7 +3,7 @@ import 'firebase/auth';
 
 import boardData from '../../helpers/data/boardData';
 import boardComponent from '../boardBuilder/boardBuilder';
-import singleBoard from '../singleBoard/singleBoard';
+import singlePin from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 import newBoardComponent from '../newBoard/newBoard';
 
@@ -28,7 +28,7 @@ const makeABoard = (e) => {
 
 const openSingleBoard = (e) => {
   const boardId = e.target.closest('.card').id;
-  singleBoard.buildPins(boardId);
+  singlePin.buildPins(boardId);
 };
 
 const removeBoards = (e) => {
