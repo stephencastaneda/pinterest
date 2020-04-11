@@ -35,6 +35,7 @@ const removeBoards = (e) => {
   const selectedBoardId = e.target.closest('.delete-board').id;
   console.error('selectedBoardId', selectedBoardId);
   boardData.deleteBoard(selectedBoardId)
+  // delete all the pins with the same boardId
     .then(() => {
     //  eslint-disable-next-line no-use-before-define
       buildBoards();
@@ -66,4 +67,9 @@ const buildBoards = () => {
     .catch((err) => console.error('problem with getBoardsByUid', err));
 };
 
-export default { buildBoards };
+const boardEvents = () => {
+  $('body').on('click', '.delete-pin', singlePin.removePin);
+  $('body').on('click', '#pin-creator', singlePin.makeAPin);
+};
+
+export default { buildBoards, boardEvents };
