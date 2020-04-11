@@ -10,6 +10,7 @@ const logoutButton = $('#navbar-logout-button');
 const userBoards = $('#userBoards');
 const singleBoardDiv = $('#single-board');
 const newBoardDiv = $('#new-board');
+const newPinDiv = $('#new-pin');
 
 // const boards =
 const checkLoginStatus = () => {
@@ -20,9 +21,11 @@ const checkLoginStatus = () => {
       boardDiv.removeClass('hide');
       logoutButton.removeClass('hide');
       singleBoard.buildBoards();
+      singleBoard.boardEvents();
       userBoards.removeClass('hide');
       singleBoardDiv.removeClass('hide');
       newBoardDiv.removeClass('hide');
+      newPinDiv.removeClass('hide');
     } else {
       // person is NOT logged in
       authDiv.removeClass('hide');
@@ -31,6 +34,7 @@ const checkLoginStatus = () => {
       userBoards.addClass('hide');
       singleBoardDiv.addClass('hide');
       newBoardDiv.addClass('hide');
+      newPinDiv.addClass('hide');
     }
   });
 };

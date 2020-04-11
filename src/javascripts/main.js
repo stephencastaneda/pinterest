@@ -15,6 +15,7 @@ const init = () => {
   myNavbar.logoutEvent();
   $('body').on('mouseenter', '.user-card', (e) => e.target.closest('.card').classList.add('bg-success'));
   // $('body').on('click', '.open-pin', singleBoard.viewSingleBoard);
+  // $('body').on('click', '.open-pin', openSingleBoard);
   $('body').on('mouseleave', '.user-card', (e) => e.target.closest('.card').classList.remove('bg-success'));
 };
 
