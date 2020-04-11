@@ -11,6 +11,7 @@ const userBoards = $('#userBoards');
 const singleBoardDiv = $('#single-board');
 const newBoardDiv = $('#new-board');
 const newPinDiv = $('#new-pin');
+const editBoardDiv = $('#edit-board');
 
 // const boards =
 const checkLoginStatus = () => {
@@ -26,6 +27,7 @@ const checkLoginStatus = () => {
       singleBoardDiv.removeClass('hide');
       newBoardDiv.removeClass('hide');
       newPinDiv.removeClass('hide');
+      editBoardDiv.removeClass('hide');
     } else {
       // person is NOT logged in
       authDiv.removeClass('hide');
@@ -35,6 +37,7 @@ const checkLoginStatus = () => {
       singleBoardDiv.addClass('hide');
       newBoardDiv.addClass('hide');
       newPinDiv.addClass('hide');
+      editBoardDiv.addClass('hide');
     }
   });
 };

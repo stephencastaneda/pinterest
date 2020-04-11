@@ -7,12 +7,12 @@ import utils from '../../helpers/utils';
 
 const userBoards = $('#userBoards');
 
+
 const showPinForm = (e) => {
   e.preventDefault();
   const { boardId } = e.target.closest('#show-add-pin-form').dataset;
   newPins.showPinForm(boardId);
 };
-
 
 const removePin = (e) => {
   const pinId = e.target.closest('.pin-card').id;
@@ -74,6 +74,7 @@ const buildPins = (boardId) => {
           domString += `<img class="card-img-top" src="${pin.imageUrl}" alt="Card image cap">`;
           domString += `<div class="card-body" id="${pin.boardId}">`;
           domString += `<button class="btn btn-danger delete-pin" id="${pin.id}" ><i class="fas fa-trash"></i></button>`;
+          domString += '<button class="btn btn-warning edit-pin float-right"><i class="fas fa-pencil-alt"></i></button>';
           domString += '</div>';
           domString += '</div>';
         }
@@ -82,6 +83,8 @@ const buildPins = (boardId) => {
       closeBoards();
       $('#back-button').on('click', fullPageView);
       $('#show-add-pin-form').click(showPinForm);
+      $('#edit-pin').on('click', editBoardEvent);
+
     })
     .catch((err) => console.error('problem with single board', err));
 };

@@ -6,6 +6,31 @@ import boardComponent from '../boardBuilder/boardBuilder';
 import singlePin from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 import newBoardComponent from '../newBoard/newBoard';
+import editBoard from '../editBoard/editBoard';
+
+
+const editBoardEvent = (e) => {
+  e.preventDefault();
+  const boardId = e.target.closest('.card').id;
+  editBoard.showEditForm(boardId);
+};
+
+const modifyBoard = (e) => {
+  e.preventDefault();
+  const boardId = e.target.closest('.edit-board-form-tag').id;
+  const modifiedBoard = {
+    name: $('#edit-board-name').val(),
+    description: $('#edit-board-description').val(),
+    uid: firebase.auth().currentUser.uid,
+  };
+  boardData.updateBoard(boardId, modifiedBoard)
+    .then(() => {
+    // eslint-disable-next-line no-use-before-define
+      buildBoards();
+      utils.printToDom('edit-board', '');
+    })
+    .catch((err) => console.error('could not update board', err));
+};
 
 const makeABoard = (e) => {
   e.preventDefault();
@@ -70,6 +95,8 @@ const buildBoards = () => {
 const boardEvents = () => {
   $('body').on('click', '.delete-pin', singlePin.removePin);
   $('body').on('click', '#pin-creator', singlePin.makeAPin);
+  $('body').on('click', '.edit-board', editBoardEvent);
+  $('body').on('click', '#board-modifier', modifyBoard);
 };
 
 export default { buildBoards, boardEvents };
