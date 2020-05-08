@@ -16,4 +16,5 @@ const completelyRemoveBoard = (boardId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+
 export default { completelyRemoveBoard };

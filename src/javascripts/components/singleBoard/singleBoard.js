@@ -3,10 +3,16 @@ import newPins from '../newPins/newPins';
 
 
 import utils from '../../helpers/utils';
+import editPins from '../editPins/editPins';
 
 
 const userBoards = $('#userBoards');
 
+const editPinEvent = (e) => {
+  e.preventDefault();
+  $('#editPinModal').modal('show');
+  editPins.showEditForm();
+};
 
 const showPinForm = (e) => {
   e.preventDefault();
@@ -83,8 +89,7 @@ const buildPins = (boardId) => {
       closeBoards();
       $('#back-button').on('click', fullPageView);
       $('#show-add-pin-form').click(showPinForm);
-      $('#edit-pin').on('click', editBoardEvent);
-
+      $('.edit-pin').on('click', editPinEvent);
     })
     .catch((err) => console.error('problem with single board', err));
 };
