@@ -97,9 +97,7 @@ const buildBoards = () => {
       utils.printToDom('userBoards', domString);
       $('body').on('click', '.open-pin', openSingleBoard);
       $('body').on('click', '.delete-board', removeBoards);
-      $('body').on('click', '#board-creator', makeABoard);
       $('body').on('click', '#board-close', closeAddBoardEvent);
-
       $('#show-add-board-form').click(newBoardComponent.showForm);
     })
     .catch((err) => console.error('problem with getBoardsByUid', err));
@@ -110,6 +108,7 @@ const boardEvents = () => {
   $('body').on('click', '.edit-board', editBoardEvent);
   $('body').on('click', '#board-modifier', modifyBoard);
   $('body').on('click', '#board-edit-close', closeEditBoardEvent);
+  $('body').on('click', '#board-creator', makeABoard);
 };
 
 export default { buildBoards, boardEvents };

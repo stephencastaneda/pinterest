@@ -104,11 +104,13 @@ const buildPins = (boardId) => {
       domString += '<div class="d-flex flex-wrap">';
       pins.forEach((pin) => {
         if (pin.boardId === boardId) {
-          domString += `<div class="card pin-card offset-3 row" id="${pin.id}" style="width: 18rem;">`;
+          domString += '<div class="col-2 mb-5 mt-5">';
+          domString += `<div class="card pin-card" id="${pin.id}" style="width: 18rem;">`;
           domString += `<img class="card-img-top" src="${pin.imageUrl}" alt="Card image cap">`;
           domString += `<div class="card-body" id="${pin.boardId}">`;
-          domString += `<button class="btn btn-danger delete-pin" id="${pin.id}" ><i class="fas fa-trash"></i></button>`;
+          domString += `<button class="btn btn-danger delete-pin mr-3" id="${pin.id}" ><i class="fas fa-trash"></i></button>`;
           domString += '<button class="btn btn-warning edit-pin float-right"><i class="fas fa-pencil-alt"></i></button>';
+          domString += '</div>';
           domString += '</div>';
           domString += '</div>';
         }
