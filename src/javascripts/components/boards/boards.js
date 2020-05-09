@@ -7,12 +7,24 @@ import singlePin from '../singleBoard/singleBoard';
 import utils from '../../helpers/utils';
 import newBoardComponent from '../newBoard/newBoard';
 import editBoard from '../editBoard/editBoard';
+import smash from '../../helpers/data/smash';
 
 
 const editBoardEvent = (e) => {
   e.preventDefault();
+  $('#edit-board').removeClass('hide');
   const boardId = e.target.closest('.card').id;
   editBoard.showEditForm(boardId);
+};
+
+const closeEditBoardEvent = (e) => {
+  e.preventDefault();
+  $('#edit-board').addClass('hide');
+};
+
+const closeAddBoardEvent = (e) => {
+  e.preventDefault();
+  $('#new-board').addClass('hide');
 };
 
 const modifyBoard = (e) => {
@@ -59,8 +71,7 @@ const openSingleBoard = (e) => {
 const removeBoards = (e) => {
   const selectedBoardId = e.target.closest('.delete-board').id;
   console.error('selectedBoardId', selectedBoardId);
-  boardData.deleteBoard(selectedBoardId)
-  // delete all the pins with the same boardId
+  smash.completelyRemoveBoard(selectedBoardId) // delete all the pins with the same boardId
     .then(() => {
     //  eslint-disable-next-line no-use-before-define
       buildBoards();
@@ -87,6 +98,8 @@ const buildBoards = () => {
       $('body').on('click', '.open-pin', openSingleBoard);
       $('body').on('click', '.delete-board', removeBoards);
       $('body').on('click', '#board-creator', makeABoard);
+      $('body').on('click', '#board-close', closeAddBoardEvent);
+
       $('#show-add-board-form').click(newBoardComponent.showForm);
     })
     .catch((err) => console.error('problem with getBoardsByUid', err));
@@ -94,9 +107,9 @@ const buildBoards = () => {
 
 const boardEvents = () => {
   $('body').on('click', '.delete-pin', singlePin.removePin);
-  $('body').on('click', '#pin-creator', singlePin.makeAPin);
   $('body').on('click', '.edit-board', editBoardEvent);
   $('body').on('click', '#board-modifier', modifyBoard);
+  $('body').on('click', '#board-edit-close', closeEditBoardEvent);
 };
 
 export default { buildBoards, boardEvents };

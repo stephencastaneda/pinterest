@@ -34,21 +34,33 @@
     <div class="col-md-9" id="single-board" class="hide text-center"></div>
     <div class="col-md-3" id="new-pin" class="hide text-center"></div>
     <div class="col-md-3" id="edit-pin" class="hide text-center"></div>
+    <!-- <div class="col-md-3" id="edit-pins" class="hide text-center"></div> -->
 
-    <div class="modal fade" id="editPinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="updatePinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="edit-pins">
+          <div class="modal-body">
+            <div id="edit-pins"></div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addPinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="add-pin"></div>
           </div>
         </div>
       </div>

@@ -1,14 +1,14 @@
 import boardData from './boardData';
-
+import pinData from './pinsData';
 
 const completelyRemoveBoard = (boardId) => new Promise((resolve, reject) => {
-  boardData.deletePin(boardId)
+  boardData.deleteBoard(boardId)
     .then(() => {
       // 1.  GET all farmerCows by cowId
-      boardData.getBoardById(boardId).then((boardPins) => {
+      pinData.getPinsByBoardId(boardId).then((boardPins) => {
         // 2.  loop over all farmerCows from step 1 and DELETE each one
         boardPins.forEach((bPin) => {
-          boardData.deleteBoardPin(bPin.id);
+          pinData.deletePin(bPin.id);
         });
         resolve();
       });

@@ -3,6 +3,7 @@ import 'firebase/auth';
 
 // eslint-disable-next-line import/no-cycle
 import singleBoard from '../../components/boards/boards';
+import singleBoardComponent from '../../components/singleBoard/singleBoard';
 
 const authDiv = $('#auth');
 const boardDiv = $('#board');
@@ -12,6 +13,7 @@ const singleBoardDiv = $('#single-board');
 const newBoardDiv = $('#new-board');
 const newPinDiv = $('#new-pin');
 const editBoardDiv = $('#edit-board');
+const updatePinsDiv = $('#edit-pins');
 
 // const boards =
 const checkLoginStatus = () => {
@@ -28,6 +30,8 @@ const checkLoginStatus = () => {
       newBoardDiv.removeClass('hide');
       newPinDiv.removeClass('hide');
       editBoardDiv.removeClass('hide');
+      updatePinsDiv.removeClass('hide');
+      singleBoardComponent.singleBoardClickEvents();
     } else {
       // person is NOT logged in
       authDiv.removeClass('hide');

@@ -1,6 +1,5 @@
 import pinsData from '../../helpers/data/pinsData';
-import newPins from '../newPins/newPins';
-
+import newPinComponent from '../newPin/newPin';
 
 import utils from '../../helpers/utils';
 import editPins from '../editPins/editPins';
@@ -8,17 +7,65 @@ import editPins from '../editPins/editPins';
 
 const userBoards = $('#userBoards');
 
-const editPinEvent = (e) => {
+const updatePinEvent = (e) => {
   e.preventDefault();
-  $('#editPinModal').modal('show');
-  editPins.showEditForm();
+  console.log('button clicked');
+  const pinId = e.target.closest('.pin-card').id;
+  $('#updatePinModal').modal('show');
+  editPins.showEditForm(pinId);
 };
 
-const showPinForm = (e) => {
+const addPinEvent = (e) => {
+  console.log('button was clizzy');
   e.preventDefault();
+  $('#addPinModal').modal('show');
   const { boardId } = e.target.closest('#show-add-pin-form').dataset;
-  newPins.showPinForm(boardId);
+  newPinComponent.showForm(boardId);
 };
+
+const createPinEvent = (e) => {
+  e.preventDefault();
+  // make a new cow object
+  const boardId = e.target.closest('.new-pin-form').id;
+  console.log(boardId);
+  const newPin = {
+    imageUrl: $('#new-pin-image').val(),
+    boardId,
+  };
+  // save to firebase
+  pinsData.addPin(newPin)
+    .then(() => {
+      $('#addPinModal').modal('hide');
+      // eslint-disable-next-line no-use-before-define
+      buildPins(boardId);
+      utils.printToDom('new-pin', '');
+    })
+    .catch((err) => console.error('could not add pin', err));
+};
+
+
+const updatePin = (e) => {
+  e.preventDefault();
+  const pinId = $('.edit-pins-form-tag').data('id');
+  const currentBoardId = $('.edit-pins-form-tag').data('board');
+  console.log('duh pinid', pinId);
+  const updatedPin = {
+    imageUrl: $('#upate-pin-image').val(),
+    boardId: $('#pin-board-id-drop-down-btn').val(),
+  };
+  pinsData.updatePin(pinId, updatedPin).then(() => {
+    $('#updatePinModal').modal('hide');
+    // eslint-disable-next-line no-use-before-define
+    buildPins(currentBoardId);
+    console.error('board refreshed', currentBoardId);
+  })
+    .catch((err) => console.error('could not update pin', err));
+};
+// const showPinForm = (e) => {
+//   e.preventDefault();
+//   const { boardId } = e.target.closest('#show-add-pin-form').dataset;
+//   // newPins.showPinForm(boardId);
+// };
 
 const removePin = (e) => {
   const pinId = e.target.closest('.pin-card').id;
@@ -34,25 +81,6 @@ const removePin = (e) => {
     .catch((err) => console.error('cannot delete pin', err));
 };
 
-const makeAPin = (e) => {
-  e.preventDefault();
-  // make a new cow object
-  const boardId = e.target.closest('.new-pin-form').id;
-  const newPin = {
-    imageUrl: $('#pin-image').val(),
-    boardId,
-  };
-  // save to firebase
-  pinsData.addPin(newPin)
-    .then(() => {
-      // reprint cows
-      // eslint-disable-next-line no-use-before-define
-      buildPins(boardId);
-      utils.printToDom('new-pin', '');
-    })
-    .catch((err) => console.error('could not add pin', err));
-};
-
 const closeBoards = () => {
   userBoards.addClass('hide');
 };
@@ -64,7 +92,7 @@ const fullPageView = () => {
 
 const buildPins = (boardId) => {
   // const boardId = e.target.closest('.card-body').id;
-  // console.error(boardId);
+  console.error('build pins board id', boardId);
   pinsData.getPinsById()
     .then((pins) => {
       let domString = '';
@@ -88,10 +116,20 @@ const buildPins = (boardId) => {
       utils.printToDom('single-board', domString);
       closeBoards();
       $('#back-button').on('click', fullPageView);
-      $('#show-add-pin-form').click(showPinForm);
-      $('.edit-pin').on('click', editPinEvent);
+      $('.edit-pin').on('click', updatePinEvent);
     })
     .catch((err) => console.error('problem with single board', err));
 };
 
-export default { buildPins, removePin, makeAPin };
+const singleBoardClickEvents = () => {
+  $('body').on('click', '.update-pin-btn', updatePin);
+  $('body').on('click', '#show-add-pin-form', addPinEvent);
+  $('body').on('click', '#pin-creator-btn', createPinEvent);
+};
+
+export default {
+  buildPins,
+  removePin,
+  createPinEvent,
+  singleBoardClickEvents,
+};
