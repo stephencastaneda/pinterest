@@ -1,6 +1,7 @@
 import utils from '../../helpers/utils';
 
 const showForm = () => {
+  $('#new-board').removeClass('hide');
   let domString = '';
   domString += '<h2 class="text-center">New Board</h2>';
   domString += '<form class="col-10 offset-1">';
@@ -13,6 +14,7 @@ const showForm = () => {
   domString += '<input type="text" class="form-control" id="board-description" placeholder="All the places to fulfill my wanderlust">';
   domString += '</div>';
   domString += '<button type="submit" class="btn btn-primary" id="board-creator">Add Board</button>';
+  domString += '<button type="submit" class="btn btn-danger ml-6" id="board-close">Close</button>';
   domString += '</form>';
   utils.printToDom('new-board', domString);
 };

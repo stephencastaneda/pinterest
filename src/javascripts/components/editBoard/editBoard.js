@@ -17,6 +17,7 @@ const showEditForm = (boardId) => {
       domString += `<input type="text" class="form-control" id="edit-board-description" placeholder="All the places to fulfill my wanderlust" value="${board.description}">`;
       domString += '</div>';
       domString += '<button type="submit" class="btn btn-primary" id="board-modifier">Modify Board</button>';
+      domString += '<button type="submit" class="btn btn-danger ml-6" id="board-edit-close">Close</button>';
       domString += '</form>';
 
       utils.printToDom('edit-board', domString);
