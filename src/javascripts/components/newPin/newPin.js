@@ -3,7 +3,7 @@ import utils from '../../helpers/utils';
 const showForm = (boardId) => {
   let domString = '';
   domString += '<h2 class="text-center">New Pin</h2>';
-  domString += `<form class="col-10 offset-1 new-pin-form" id=${boardId}>`;
+  domString += `<form class="col-10 new-pin-form" id=${boardId}>`;
   domString += '<div class="form-group">';
   domString += '<input type="text" class="form-control" id="new-pin-image" placeholder="Paste ImageUrl">';
   domString += '</div>';
